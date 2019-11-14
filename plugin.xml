@@ -35,7 +35,7 @@
         <framework src="Photos.framework" />
         <framework src="AVFoundation.framework" />
         <podspec use-frameworks="true">
-          <pod name="Smooch" spec="~> 6.0">
+          <pod name="Smooch" spec="~> 6.0" />
         </podspec>
     </platform>
 
