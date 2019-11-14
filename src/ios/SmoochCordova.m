@@ -8,6 +8,7 @@
 
 #import "SmoochCordova.h"
 #import <Smooch/Smooch.h>
+#import <Smooch/SKTConversation.h>
 
 @implementation SmoochCordova
 
@@ -84,6 +85,13 @@
     [currentUser addProperties:properties];
 
     [self sendSuccess:command];
+}
+
+#pragma mark - Conversation
+
+- (void)sendMessage:(SKTMessage *)message {
+  [SKTConversation sendMessage];
+  [self sendSuccess:command];
 }
 
 #pragma mark - Private Methods
