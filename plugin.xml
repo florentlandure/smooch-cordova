@@ -34,11 +34,11 @@
         <framework src="AssetsLibrary.framework" />
         <framework src="Photos.framework" />
         <framework src="AVFoundation.framework" />
-        <podspec use-frameworks="true">
+        <podspec>
           <config>
             <source url="https://github.com/CocoaPods/Specs.git"/>
           </config>
-          <pods>
+          <pods use-frameworks="true">
             <pod name="Smooch" spec="~> 6.0" />
           </pods>
         </podspec>
