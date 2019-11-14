@@ -5,23 +5,29 @@ var Smooch = {
   },
 
   show: function(success, error) {
-    cordova.exec(success, error, "SmoochCordova", "show", []);
+    cordova.exec(success, error, 'SmoochCordova', 'show', []);
   },
 
   setUser: function(user, success, error) {
-    cordova.exec(success, error, "SmoochCordova", "setUser", [user]);
+    cordova.exec(success, error, 'SmoochCordova', 'setUser', [user]);
   },
 
   setUserProperties: function(properties, success, error) {
-    cordova.exec(success, error, "SmoochCordova", "setUserProperties", [properties]);
+    cordova.exec(success, error, 'SmoochCordova', 'setUserProperties', [
+      properties
+    ]);
   },
 
   login: function(userId, jwt, success, error) {
-    cordova.exec(success, error, "SmoochCordova", "login", [userId, jwt]);
+    cordova.exec(success, error, 'SmoochCordova', 'login', [userId, jwt]);
   },
 
   logout: function(success, error) {
-    cordova.exec(success, error, "SmoochCordova", "logout", []);
+    cordova.exec(success, error, 'SmoochCordova', 'logout', []);
+  },
+
+  sendMessage: function(message, success, error) {
+    cordova.exec(success, error, message);
   }
 };
 
