@@ -89,8 +89,7 @@
 
 #pragma mark - Conversation
 
-- (void)sendMessage:(SKTMessage *)message {
-  [SKTConversation sendMessage];
+- (void)sendMessage:(CDVInvokedUrlCommand *)command {
   [self sendSuccess:command];
 }
 

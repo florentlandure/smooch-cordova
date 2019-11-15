@@ -19,6 +19,6 @@
 - (void)setUser:(CDVInvokedUrlCommand *)command;
 - (void)setUserProperties:(CDVInvokedUrlCommand *)command;
 
-- (void)sendMessage:(SKTMessage *)message
+- (void)sendMessage:(CDVInvokedUrlCommand *)command;
 
 @end
