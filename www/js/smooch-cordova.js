@@ -28,6 +28,10 @@ var Smooch = {
 
   sendMessage: function(message, success, error) {
     cordova.exec(success, error, 'SmoochCordova', 'sendMessage', [message]);
+  },
+
+  getSettings: function(success, error) {
+    cordova.exec(success, error, 'SmoochCordova', 'getSettings', []);
   }
 };
 

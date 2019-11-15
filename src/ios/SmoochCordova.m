@@ -94,6 +94,10 @@
   [self sendSuccess:command];
 }
 
+- (SKTSettings)getSettings:(CDVInvokedUrlCommand *)command {
+  return [Smooch settings];
+}
+
 #pragma mark - Private Methods
 
 - (void)sendSuccess:(CDVInvokedUrlCommand *)command {

@@ -8,6 +8,7 @@
 
 #import <Cordova/CDV.h>
 #import <Smooch/SKTMessage.h>
+#import <Smooch/SKTSettings.h>
 
 @interface SmoochCordova : CDVPlugin
 
@@ -20,5 +21,7 @@
 - (void)setUserProperties:(CDVInvokedUrlCommand *)command;
 
 - (void)sendMessage:(CDVInvokedUrlCommand *)command;
+
+- (SKTSettings)getSettings:(CDVInvokedUrlCommand *)command;
 
 @end
