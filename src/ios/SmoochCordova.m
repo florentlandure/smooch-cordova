@@ -90,6 +90,7 @@
 #pragma mark - Conversation
 
 - (void)sendMessage:(CDVInvokedUrlCommand *)command {
+  [[Smooch conversation] sendMessage:[[SKTMessage alloc] initWithText: [command argumentAtIndex:0]]];
   [self sendSuccess:command];
 }
 

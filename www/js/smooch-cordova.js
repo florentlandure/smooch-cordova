@@ -27,7 +27,7 @@ var Smooch = {
   },
 
   sendMessage: function(message, success, error) {
-    cordova.exec(success, error, message);
+    cordova.exec(success, error, 'SmoochCordova', 'sendMessage', [message]);
   }
 };
 
