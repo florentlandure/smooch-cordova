@@ -30,8 +30,14 @@ var Smooch = {
     cordova.exec(success, error, 'SmoochCordova', 'sendMessage', [message]);
   },
 
-  getSettings: function(success, error) {
-    cordova.exec(success, error, 'SmoochCordova', 'getSettings', []);
+  loadConversation: function(conversationId, success, error) {
+    cordova.exec(success, error, 'SmoochCordova', 'loadConversation', [
+      conversationId
+    ]);
+  },
+
+  close: function(success, error) {
+    cordova.exec(success, error, 'SmoochCordova', 'close', []);
   }
 };
 

@@ -22,6 +22,7 @@
 
 - (void)sendMessage:(CDVInvokedUrlCommand *)command;
 
-- (SKTSettings)getSettings:(CDVInvokedUrlCommand *)command;
+- (void)loadConversation:(CDVInvokedUrlCommand *)command;
+- (void)close:(CDVInvokedUrlCommand *)command;
 
 @end

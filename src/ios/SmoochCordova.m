@@ -7,8 +7,7 @@
 */
 
 #import "SmoochCordova.h"
-#import <Smooch/Smooch.h>
-#import <Smooch/SKTConversation.h>
+#import <Solocal/Solocal.h>
 
 @implementation SmoochCordova
 
@@ -16,7 +15,7 @@
     NSMutableDictionary *settings = [[NSMutableDictionary alloc]
         initWithDictionary:[command argumentAtIndex:0]];
 
-    SKTSettings *sktSettingsObj = [[SKTSettings alloc] init];
+    ZSMSettings *sktSettingsObj = [[ZSMSettings alloc] init];
 
     if ([settings valueForKey:@"conversationAccentColor"]) {
         sktSettingsObj.conversationAccentColor = [SmoochCordova colorFromHexString:[settings valueForKey:@"conversationAccentColor"]];
@@ -24,7 +23,7 @@
     }
 
     [sktSettingsObj setValuesForKeysWithDictionary:settings];
-    [Smooch initWithSettings:sktSettingsObj completionHandler:^(NSError * _Nullable error, NSDictionary * _Nullable userInfo) {
+    [Solocal initWithSettings:sktSettingsObj completionHandler:^(NSError * _Nullable error, NSDictionary * _Nullable userInfo) {
         if(!error){
             [self sendSuccess:command];
         } else {
@@ -34,7 +33,7 @@
 }
 
 - (void)show:(CDVInvokedUrlCommand *)command {
-    [Smooch show];
+    [Solocal show];
     [self sendSuccess:command];
 }
 
@@ -42,7 +41,7 @@
     NSString *userId = [command argumentAtIndex:0];
     NSString *jwt = [command argumentAtIndex:1];
 
-    [Smooch login:userId jwt:jwt completionHandler:^(NSError * _Nullable error, NSDictionary * _Nullable userInfo) {
+    [Solocal login:userId jwt:jwt completionHandler:^(NSError * _Nullable error, NSDictionary * _Nullable userInfo) {
         if(!error){
             [self sendSuccess:command];
         } else {
@@ -52,7 +51,7 @@
 }
 
 - (void)logout:(CDVInvokedUrlCommand *)command {
-    [Smooch logoutWithCompletionHandler:^(NSError * _Nullable error, NSDictionary * _Nullable userInfo) {
+    [Solocal logoutWithCompletionHandler:^(NSError * _Nullable error, NSDictionary * _Nullable userInfo) {
         if(!error){
             [self sendSuccess:command];
         } else {
@@ -66,7 +65,7 @@
 - (void)setUser:(CDVInvokedUrlCommand *)command {
     NSDictionary *user = [command argumentAtIndex:0];
 
-    SKTUser *currentUser = [SKTUser currentUser];
+    ZSMUser *currentUser = [ZSMUser currentUser];
     [currentUser setValuesForKeysWithDictionary:user];
 
     id timestamp = [user valueForKey:@"signedUpAt"];
@@ -81,7 +80,7 @@
 - (void)setUserProperties:(CDVInvokedUrlCommand *)command {
     NSDictionary *properties = [command argumentAtIndex:0];
 
-    SKTUser *currentUser = [SKTUser currentUser];
+    ZSMUser *currentUser = [ZSMUser currentUser];
     [currentUser addProperties:properties];
 
     [self sendSuccess:command];
@@ -90,12 +89,24 @@
 #pragma mark - Conversation
 
 - (void)sendMessage:(CDVInvokedUrlCommand *)command {
-  [[Smooch conversation] sendMessage:[[SKTMessage alloc] initWithText: [command argumentAtIndex:0]]];
+  [[Solocal conversation] sendMessage:[[ZSMMessage alloc] initWithText: [command argumentAtIndex:0]]];
   [self sendSuccess:command];
 }
 
-- (SKTSettings)getSettings:(CDVInvokedUrlCommand *)command {
-  return [Smooch settings];
+- (void)close:(CDVInvokedUrlCommand *)command {
+    [Solocal close];
+    [self sendSuccess:command];
+}
+
+- (void)loadConversation:(CDVInvokedUrlCommand *)command {
+    NSString *conversationId = [command argumentAtIndex:0];
+    [Solocal loadConversation:conversationId completionHandler:^(NSError * _Nullable error, NSDictionary * _Nullable userInfo) {
+        if(!error){
+            [self sendSuccess:command];
+        } else {
+            [self sendFailure:command];
+        }
+    }];
 }
 
 #pragma mark - Private Methods
